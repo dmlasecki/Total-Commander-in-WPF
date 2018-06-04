@@ -32,10 +32,12 @@ namespace TotalCommander.MainViews
             
            
             }
-        SelectedSide selectedSite;
+        
 
         Stack myStack = new Stack();
-       public DiscElement SelectedElement
+     
+
+        public DiscElement SelectedElement
         {
 
 
@@ -43,13 +45,12 @@ namespace TotalCommander.MainViews
             {
                
                 Contr selectedItem = ((Contr)listView.SelectedItem);
-                if(selectedItem == null)
+                if (selectedItem != null)
                 {
-                    selectedSite = SelectedSide.left;
-                }
-                
+
                     return selectedItem.Ele;
-                 
+                }
+                else return null;
 
                
             }

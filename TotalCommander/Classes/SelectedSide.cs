@@ -8,7 +8,7 @@ namespace TotalCommander.Classes
 {
     enum SelectedSide
     {
-      right,
-      left
+      left,
+      right
     }
 }

@@ -50,17 +50,32 @@ namespace TotalCommander
 
         private void delete_Click(object sender, RoutedEventArgs e)
         {
+
+            
+
+            if (this.sideRight.SelectedElement != null)
+            {
+                selectedSite = SelectedSide.right;
+            }
+            else selectedSite = SelectedSide.left;
            
+
 
             if (selectedSite == SelectedSide.left)
             {
-                
-                System.IO.File.Delete(sideLeft.SelectedElement.Path);
+
+                File.Delete(sideLeft.SelectedElement.Path);
+                sideLeft.RefreshList();
+                sideRight.RefreshList();
                     }
-            else if (selectedSite == SelectedSide.right)
+
+            else
             {
-                System.IO.File.Delete(sideRight.SelectedElement.Path);
+                File.Delete(sideRight.SelectedElement.Path);
+                sideRight.RefreshList();
+                sideLeft.RefreshList();
             }
+            
         }
     }
 }
