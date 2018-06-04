@@ -10,8 +10,10 @@ namespace TotalCommander.Classes
     
     class Contr
     {
+        DiscElement ele;
         public Contr(DiscElement ele)
         {
+            this.ele = ele;
             Name = ele.getName();
             Path = ele.Path;
             isFile = ele.isFile();
@@ -41,5 +43,12 @@ namespace TotalCommander.Classes
         public string Path { get; set; }
         public bool isFile { get; set; }
 
+        public DiscElement Ele
+        {
+            get
+            {
+                return ele;
+            }
+        }
     }
 }

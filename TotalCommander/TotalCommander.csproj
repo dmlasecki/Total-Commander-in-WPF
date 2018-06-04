@@ -59,7 +59,8 @@
     <Compile Include="Classes\DiscElement.cs" />
     <Compile Include="Classes\MyDirectory.cs" />
     <Compile Include="Classes\MyFile.cs" />
-    <Compile Include="SideView.xaml.cs">
+    <Compile Include="Classes\SelectedSide.cs" />
+    <Compile Include="MainViews\SideView.xaml.cs">
       <DependentUpon>SideView.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
@@ -74,7 +75,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="SideView.xaml">
+    <Page Include="MainViews\SideView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

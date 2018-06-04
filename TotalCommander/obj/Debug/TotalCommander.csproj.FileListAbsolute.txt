@@ -11,6 +11,6 @@ L:\C# Projects\Projekt Semestralny C#\TotalCommander\TotalCommander\obj\Debug\To
 L:\C# Projects\Projekt Semestralny C#\TotalCommander\TotalCommander\obj\Debug\TotalCommander.csproj.GenerateResource.Cache
 L:\C# Projects\Projekt Semestralny C#\TotalCommander\TotalCommander\obj\Debug\TotalCommander.exe
 L:\C# Projects\Projekt Semestralny C#\TotalCommander\TotalCommander\obj\Debug\TotalCommander.pdb
-L:\C# Projects\Projekt Semestralny C#\TotalCommander\TotalCommander\obj\Debug\SideView.g.cs
-L:\C# Projects\Projekt Semestralny C#\TotalCommander\TotalCommander\obj\Debug\SideView.baml
 L:\C# Projects\Projekt Semestralny C#\TotalCommander\TotalCommander\obj\Debug\TotalCommander.Classes.Resources.resources
+L:\C# Projects\Projekt Semestralny C#\TotalCommander\TotalCommander\obj\Debug\MainViews\SideView.g.cs
+L:\C# Projects\Projekt Semestralny C#\TotalCommander\TotalCommander\obj\Debug\MainViews\SideView.baml
