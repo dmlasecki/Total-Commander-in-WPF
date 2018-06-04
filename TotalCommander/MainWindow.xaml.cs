@@ -24,58 +24,34 @@ namespace TotalCommander
     public partial class MainWindow : Window
 
     {
-      
+        SideView sideLeft;
+        SideView sideRight;
+        public Operations operation { get; set;}
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-         
-        }
-
-
-     static SelectedSide selectedSite;
-
-        SideView sideLeft;
-        SideView sideRight;
-    
-        public MainWindow() :base()
-        {
-            InitializeComponent();
+           
             sideLeft = new SideView();
             sideRight = new SideView();
-          
+             operation = new Operations(sideLeft, sideRight);
+            operation.ShowAfterDeleted += RefreshAllList;
+
             leftBorder.Child = sideLeft;
             rightBorder.Child = sideRight;
-            //Up.Child = main;
-}
+            Up.Child = operation;
+        }
 
-        private void delete_Click(object sender, RoutedEventArgs e)
+       public MainWindow() :base()
         {
+            InitializeComponent();
+         }
+       
 
-            
-
-            if (this.sideRight.SelectedElement != null)
-            {
-                selectedSite = SelectedSide.right;
-            }
-            else selectedSite = SelectedSide.left;
-           
-
-
-            if (selectedSite == SelectedSide.left)
-            {
-
-                File.Delete(sideLeft.SelectedElement.Path);
-                sideLeft.RefreshList();
-                sideRight.RefreshList();
-                    }
-
-            else
-            {
-                File.Delete(sideRight.SelectedElement.Path);
-                sideRight.RefreshList();
-                sideLeft.RefreshList();
-            }
-            
+       
+        public void RefreshAllList()
+        {
+            this.sideLeft.RefreshList();
+            this.sideRight.RefreshList();
         }
     }
 }

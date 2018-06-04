@@ -25,11 +25,11 @@ namespace TotalCommander.MainViews
     public partial class SideView : UserControl
     {
 
-       
+      
         public SideView()
         {
             InitializeComponent();
-            
+           
            
             }
         
