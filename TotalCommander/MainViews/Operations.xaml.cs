@@ -102,7 +102,45 @@ namespace TotalCommander.MainViews
                     MessageBox.Show(ex.Message);
                 }
             }
-           
+
+        }
+
+        private void DirectoryCopy(string sourceDirName, string destDirName, bool copySubDirs)
+        {
+            // Get the subdirectories for the specified directory.
+            DirectoryInfo dir = new DirectoryInfo(sourceDirName);
+
+            if (!dir.Exists)
+            {
+                throw new DirectoryNotFoundException(
+                    "Source directory does not exist or could not be found: "
+                    + sourceDirName);
+            }
+
+            DirectoryInfo[] dirs = dir.GetDirectories();
+            // If the destination directory doesn't exist, create it.
+            if (!Directory.Exists(destDirName))
+            {
+                Directory.CreateDirectory(destDirName);
+            }
+
+            // Get the files in the directory and copy them to the new location.
+            FileInfo[] files = dir.GetFiles();
+            foreach (FileInfo file in files)
+            {
+                string temppath = System.IO.Path.Combine(destDirName, file.Name);
+                file.CopyTo(temppath, false);
+            }
+
+            // If copying subdirectories, copy them and their contents to new location.
+            if (copySubDirs)
+            {
+                foreach (DirectoryInfo subdir in dirs)
+                {
+                    string temppath = System.IO.Path.Combine(destDirName, subdir.Name);
+                    DirectoryCopy(subdir.FullName, temppath, copySubDirs);
+                }
+            }
         }
 
         private void copy_Click(object sender, RoutedEventArgs e)
@@ -113,42 +151,33 @@ namespace TotalCommander.MainViews
             }
             else selectedSite = SelectedSide.left;
 
-            string fileName = sideLeft.SelectedElement.Path;
-            string sourcePath = sideLeft.mainPath.Text;
-            string targetPath = sideRight.mainPath.Text;
-
+            DiscElement presentElement = selectedSite == SelectedSide.left ? sideLeft.SelectedElement : sideRight.SelectedElement;
+            string dirName = selectedSite == SelectedSide.left ? sideLeft.SelectedElement.Path : sideRight.SelectedElement.Path;
+            string fileName = selectedSite == SelectedSide.left ? sideLeft.SelectedElement.getName() : sideRight.SelectedElement.getName();
+            string sourcePath = selectedSite == SelectedSide.left ? sideLeft.mainPath.Text : sideRight.mainPath.Text;
+            string targetPath = selectedSite == SelectedSide.left ? sideRight.mainPath.Text : sideLeft.mainPath.Text;
             string sourceFile = System.IO.Path.Combine(sourcePath, fileName);
             string destFile = System.IO.Path.Combine(targetPath, fileName);
 
-            if (!System.IO.Directory.Exists(targetPath))
+            if (presentElement.isFile())
             {
-                System.IO.Directory.CreateDirectory(targetPath);
-            }
 
-            if (System.IO.Directory.Exists(sourcePath))
-            {
-                string[] files = System.IO.Directory.GetFiles(sourcePath);
 
-                // Copy the files and overwrite destination files if they already exist.
-                foreach (string s in files)
+                if (!System.IO.Directory.Exists(targetPath))
                 {
-                    // Use static Path methods to extract only the file name from the path.
-                    fileName = System.IO.Path.GetFileName(s);
-                    destFile = System.IO.Path.Combine(targetPath, fileName);
-                    System.IO.File.Copy(s, destFile, true);
+                    System.IO.Directory.CreateDirectory(targetPath);
                 }
+                File.Copy(sourceFile, destFile, true);
+                onShowAfterDeleted();
             }
+
             else
             {
-                Console.WriteLine("Source path does not exist!");
+
+                DirectoryCopy(dirName, destFile, true);
+                onShowAfterDeleted();
+
             }
-
-            // Keep console window open in debug mode.
-            Console.WriteLine("Press any key to exit.");
-           // Console.ReadKey();
-
-            onShowAfterDeleted();
-        
-    }
+        }
     }
 }

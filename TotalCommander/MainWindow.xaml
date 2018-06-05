@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="550" Width="960"
         Loaded="Window_Loaded">
-    <Grid Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}" Margin="0,0,-0.4,-3.6" Name="MainGrid">
+    <Grid Margin="0,0,-0.4,-3.6" Name="MainGrid" Background="#FF9D9D9D">
         <Border HorizontalAlignment="Left" Height="447" Margin="468,42,0,0" VerticalAlignment="Top" Width="466" Name="rightBorder"/>
         <Border HorizontalAlignment="Left" Height="447" Margin="10,42,0,0" VerticalAlignment="Top" Width="458" Name="leftBorder"/>
         <Border HorizontalAlignment="Left" Height="30" Margin="15,7,0,0" VerticalAlignment="Top" Width="919" Name="Up"/>
