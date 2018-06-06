@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 L:\C# Projects\Projekt Semestralny C#\TotalCommander\TotalCommander\App.xaml
-3157872497
+4-1251237190
 
-161825522014
+18249904718
 13738642453
-MainViews\Operations.xaml;MainWindow.xaml;MainViews\SideView.xaml;
+AdditionalElements\CreateDirectory.xaml;MainViews\Operations.xaml;MainWindow.xaml;MainViews\SideView.xaml;
 
-False
+True
 

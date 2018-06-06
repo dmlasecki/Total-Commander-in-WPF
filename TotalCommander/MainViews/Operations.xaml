@@ -5,10 +5,28 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TotalCommander.MainViews"
              mc:Ignorable="d" 
-             d:DesignHeight="50" d:DesignWidth="900">
+             d:DesignHeight="447" d:DesignWidth="135">
     <Grid>
-        <Button x:Name="delete" Content="Usuń" HorizontalAlignment="Left" Margin="50,10,0,0" VerticalAlignment="Top" Width="75" Click="delete_Click"/>
-        <Button x:Name="copy" Content="Kopiuj" HorizontalAlignment="Left" Margin="220,11,0,0" VerticalAlignment="Top" Width="75" Click="copy_Click"/>
+        <Button x:Name="delete" Content="Usuń" HorizontalAlignment="Left" Margin="30,140,0,0" VerticalAlignment="Top" Width="75" Click="delete_Click"/>
+        <Button x:Name="copy" Content="Kopiuj" HorizontalAlignment="Left" Margin="30,190,0,0" VerticalAlignment="Top" Width="75" Click="copy_Click"/>
+        <ToggleButton FocusVisualStyle="{x:Null}" Name="byName" Margin="10,48,10.2,378.2" Checked="byName_Checked" Unchecked="byName_Unchecked" Focusable="False">
+            <ToggleButton.Style>
+                <Style TargetType="ToggleButton">
+                    <Setter Property="Content" Value="Nazwa"></Setter>
 
+
+                    <Style.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter Property="Content" Value="Data utworzenia" />
+                           
+                        </Trigger>
+                    </Style.Triggers>
+
+
+                </Style>
+            </ToggleButton.Style>
+        </ToggleButton>
+        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="23" Margin="10,25,0,0" TextWrapping="Wrap" Text="Sortuj według:" VerticalAlignment="Top" Width="115" TextAlignment="Center"/>
+        <Button x:Name="button" Content="Nowy folder" HorizontalAlignment="Left" Margin="30,240,0,0" VerticalAlignment="Top" Width="75" Click="button_Click"/>
     </Grid>
 </UserControl>

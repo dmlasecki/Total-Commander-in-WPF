@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:TotalCommander"
              mc:Ignorable="d" Height="516.364" Width="453.636"
              Loaded="Side_loaded"
+             
              >
     <Grid Margin="0,0,-0.4,10">
         <ListView x:Name="listView" 
@@ -13,12 +14,14 @@
                   Height="350" Margin="14,54,0,0" 
                   VerticalAlignment="Top" Width="440" 
                   MouseDoubleClick="OpenDirectory"
+                GotFocus="listView_GotFocus"
                   
+             
                   >
 
             <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="Nazwa" Width="140" DisplayMemberBinding="{Binding Name}"/>
+                <GridView >
+                    <GridViewColumn Header="Nazwa" Width="140" DisplayMemberBinding="{Binding Name}" />
                     <GridViewColumn Header="Typ" Width="50" DisplayMemberBinding="{Binding Type}" />
                     <GridViewColumn Header="Data utworzenia" Width="140" DisplayMemberBinding="{Binding CreationDate}" />
                     <GridViewColumn Header="Rozmiar" Width="85" DisplayMemberBinding="{Binding Size}"/>
@@ -26,9 +29,8 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <TextBox x:Name="mainPath" HorizontalAlignment="Left" Height="20" Margin="14,409,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="368"/>
-        <Button x:Name="button2" Content="Przejdź" HorizontalAlignment="Left" Height="20" Margin="376,409,0,0" VerticalAlignment="Top" Width="78" Click="button2_Click" Background="#FFF3F3F3"/>
-        <Button x:Name="back" Content="🡸" HorizontalAlignment="Left" Margin="354,409,0,0" VerticalAlignment="Top" Width="28" Height="20" Background="White" Foreground="#FF2F2F2F" FontSize="12.5" Click="back_Click"  />
+        <TextBox x:Name="mainPath" HorizontalAlignment="Left" Height="20" Margin="14,409,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="412"/>
+        <Button x:Name="back" Content="🡸" HorizontalAlignment="Left" Margin="416,409,0,0" VerticalAlignment="Top" Width="38" Height="20" Background="White" Foreground="#FF2F2F2F" FontSize="12.5" Click="back_Click"  />
         <ComboBox x:Name="Disc" HorizontalAlignment="Left" Height="21" Margin="14,28,0,0" VerticalAlignment="Top" Width="79" SelectionChanged="Disc_SelectedIndexChanged"/>
     </Grid>
 </UserControl>

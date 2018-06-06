@@ -16,6 +16,7 @@ using TotalCommander.Classes;
 using System.IO;
 using System.Collections;
 using System.Diagnostics;
+using System.ComponentModel;
 
 namespace TotalCommander.MainViews
 {
@@ -24,23 +25,39 @@ namespace TotalCommander.MainViews
     /// </summary>
     public partial class SideView : UserControl
     {
-
-      
+        
+       
         public SideView()
         {
             InitializeComponent();
            
-           
-            }
+
+        }
+
         
+      
+        public bool isActive { get; set; }
+        
+       
+    
+
+        private void Side_Loaded(object sender, RoutedEventArgs e)
+        {
+            
+           
+            isActive = false;
+           
+        }
+
+
 
         Stack myStack = new Stack();
-     
-
+        public int count { get; set; }
+      
         public DiscElement SelectedElement
         {
 
-
+            
             get
             {
                
@@ -57,7 +74,22 @@ namespace TotalCommander.MainViews
         }
      
         
+       
+        
+        public void sortByName()
+        {
+           
+            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(listView.ItemsSource);
+            view.SortDescriptions.Add(new SortDescription("Name", ListSortDirection.Ascending));
+        }
 
+
+        public void sortByDate()
+        {
+          
+            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(listView.ItemsSource);
+            view.SortDescriptions.Add(new SortDescription("CreationDate", ListSortDirection.Ascending));
+        }
         private void Side_loaded(object sender, RoutedEventArgs e)
         {
 
@@ -77,6 +109,7 @@ namespace TotalCommander.MainViews
         {
             List<Contr> controller = new List<Contr>();
             listView.ItemsSource = "";
+            
             MyDirectory dirs = new MyDirectory(mainPath.Text);
             List<DiscElement> elements = dirs.GetSubElements();
 
@@ -86,37 +119,51 @@ namespace TotalCommander.MainViews
             }
             listView.ItemsSource = controller;
 
+         
 
         }
 
-        private void button2_Click(object sender, RoutedEventArgs e)
-          {
-             RefreshList();
-          }
+       
 
       
         private void Disc_SelectedIndexChanged(object sender, EventArgs e)
         {
             string[] nazwy;
+            
+            count++;
             nazwy = Directory.GetLogicalDrives();
+            
             mainPath.Text = nazwy[Disc.SelectedIndex];
             myStack.Clear();
             myStack.Push(mainPath.Text);
             RefreshList();
+            isActive = true;
+            /* if (count > 1)
+             {
+                steps++;
+                isActive = true;
+
+            }*/
         }
-        
+
 
         private void OpenDirectory(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left)
             {
-                
+
+
+
+
+               isActive = true;
+              // steps++;
                 Contr selectedItem = ((Contr)listView.SelectedItem);
                 if (selectedItem.isFile)
                 {
                     Process.Start(selectedItem.Path);
 
                 }
+                
 
                 else
                 {
@@ -128,7 +175,9 @@ namespace TotalCommander.MainViews
             }
         }
 
-       
+      
+
+    
 
         private void back_Click(object sender, RoutedEventArgs e)
         {
@@ -138,6 +187,16 @@ namespace TotalCommander.MainViews
                 mainPath.Text = myStack.Peek().ToString();
                 RefreshList();
             }
+
+        }
+
+     
+
+        private void listView_GotFocus(object sender, RoutedEventArgs e)
+        {
+          // MessageBox.Show("Jestem");
+           // steps++;
+            isActive = true;
 
         }
     }

@@ -16,3 +16,5 @@ L:\C# Projects\Projekt Semestralny C#\TotalCommander\TotalCommander\obj\Debug\Ma
 L:\C# Projects\Projekt Semestralny C#\TotalCommander\TotalCommander\obj\Debug\MainViews\SideView.baml
 L:\C# Projects\Projekt Semestralny C#\TotalCommander\TotalCommander\obj\Debug\MainViews\Operations.g.cs
 L:\C# Projects\Projekt Semestralny C#\TotalCommander\TotalCommander\obj\Debug\MainViews\Operations.baml
+L:\C# Projects\Projekt Semestralny C#\TotalCommander\TotalCommander\obj\Debug\AdditionalElements\CreateDirectory.g.cs
+L:\C# Projects\Projekt Semestralny C#\TotalCommander\TotalCommander\obj\Debug\AdditionalElements\CreateDirectory.baml

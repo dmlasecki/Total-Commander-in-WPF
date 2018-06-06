@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TotalCommander.Classes;
+using TotalCommander.AdditionalElements;
 
 namespace TotalCommander.MainViews
 {
@@ -22,6 +23,7 @@ namespace TotalCommander.MainViews
     /// </summary>
     public partial class Operations : UserControl
     {
+        SelectedSide selectedSite;
 
         public SideView sideLeft { get; set; }
         public SideView sideRight { get; set; }
@@ -32,10 +34,56 @@ namespace TotalCommander.MainViews
             InitializeComponent();
             this.sideLeft = sideLeft;
             this.sideRight = sideRight;
+           // byName.Focusable = false;
+        }
+
+        public void RefreshAllList()
+        {
+            sideLeft.RefreshList();
+            sideRight.RefreshList();
         }
 
         public delegate void deletedEventHandler();
         public event deletedEventHandler ShowAfterDeleted;
+
+        public delegate void sortedNameElementsEventHandler(string side);
+        public event sortedNameElementsEventHandler ShowAfterNameSorted;
+
+        public delegate void sortedDateElementEventHandler(string side);
+        public event sortedDateElementEventHandler ShowAfterDateSorted;
+
+        FocusCommunication communication = new FocusCommunication();
+        protected virtual void onShowAfterDateSorted()
+        {
+           
+            string side = communication.CorrectSide(sideLeft, sideRight);
+            sideLeft.isActive = false;
+            sideRight.isActive = false;
+
+            if (ShowAfterDateSorted != null)
+            {
+                ShowAfterDateSorted.Invoke(side);
+            }
+    }
+
+        protected virtual void onShowAfterNameSorted()
+
+
+        {
+            
+            string side = communication.CorrectSide(sideLeft, sideRight);
+            sideLeft.isActive = false;
+            sideRight.isActive = false;
+
+
+            if (ShowAfterNameSorted != null)
+            {
+                ShowAfterNameSorted.Invoke(side);
+            }
+
+
+        }
+
         protected virtual void onShowAfterDeleted()
         {
             if (ShowAfterDeleted != null)
@@ -43,7 +91,7 @@ namespace TotalCommander.MainViews
                 ShowAfterDeleted.Invoke();
             }
         }
-        SelectedSide selectedSite;
+        
 
         private void delete_Click(object sender, RoutedEventArgs e)
         {
@@ -54,7 +102,7 @@ namespace TotalCommander.MainViews
             else selectedSite = SelectedSide.left;
 
 
-
+            
             if (selectedSite == SelectedSide.left)
             {
 
@@ -178,6 +226,44 @@ namespace TotalCommander.MainViews
                 onShowAfterDeleted();
 
             }
+        }
+
+        private void byName_Checked(object sender, RoutedEventArgs e)
+        {
+            // MessageBox.Show("Po nazwie");
+           
+            onShowAfterNameSorted();
+            
+
+            
+            
+        }
+        private void byName_Unchecked(object sender, RoutedEventArgs e)
+        {
+            //MessageBox.Show("Po dacie");
+            onShowAfterDateSorted();
+
+
+        }
+
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+            if (sideRight.SelectedElement != null)
+            {
+                selectedSite = SelectedSide.right;
+            }
+           
+            else selectedSite = SelectedSide.left;
+
+
+            string sourcePath = selectedSite == SelectedSide.left ? sideLeft.mainPath.Text : sideRight.mainPath.Text;
+            
+            var dialog = new CreateDirectory(sourcePath);
+            dialog.Show();
+            dialog.CreatedDirectory += RefreshAllList;
+           
+           
+            
         }
     }
 }

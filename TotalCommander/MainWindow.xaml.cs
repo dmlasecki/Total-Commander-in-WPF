@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using System.IO;
 using TotalCommander.MainViews;
 using TotalCommander.Classes;
+using TotalCommander.AdditionalElements;
 
 namespace TotalCommander
 {
@@ -33,9 +34,12 @@ namespace TotalCommander
            
             sideLeft = new SideView();
             sideRight = new SideView();
-             operation = new Operations(sideLeft, sideRight);
+            
+            operation = new Operations(sideLeft, sideRight);
             operation.ShowAfterDeleted += RefreshAllList;
-
+            operation.ShowAfterNameSorted += RefreshAfterNameSort;
+            operation.ShowAfterDateSorted += RefreshAfterDateSort;
+           
             leftBorder.Child = sideLeft;
             rightBorder.Child = sideRight;
             Up.Child = operation;
@@ -52,6 +56,41 @@ namespace TotalCommander
         {
             this.sideLeft.RefreshList();
             this.sideRight.RefreshList();
+            
         }
+
+       
+
+        public void RefreshAfterNameSort(string a)
+        {
+          
+
+            if (a == "left")
+            {
+                this.sideLeft.RefreshList();
+                sideLeft.sortByName();
+
+            }
+            else {
+                this.sideRight.RefreshList();
+                sideRight.sortByName(); }
+        }
+        public void RefreshAfterDateSort(string a)
+        {
+         
+            if (a == "left")
+            {
+                this.sideLeft.RefreshList();
+                sideLeft.sortByDate();
+
+            }
+            else
+            {
+                this.sideRight.RefreshList();
+                sideRight.sortByDate();
+            }
+        }
+
+       
     }
 }

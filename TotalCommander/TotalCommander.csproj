@@ -55,8 +55,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AdditionalElements\CreateDirectory.xaml.cs">
+      <DependentUpon>CreateDirectory.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Classes\Contr.cs" />
     <Compile Include="Classes\DiscElement.cs" />
+    <Compile Include="Classes\FocusCommunication.cs" />
     <Compile Include="Classes\MyDirectory.cs" />
     <Compile Include="Classes\MyFile.cs" />
     <Compile Include="Classes\SelectedSide.cs" />
@@ -66,6 +70,10 @@
     <Compile Include="MainViews\SideView.xaml.cs">
       <DependentUpon>SideView.xaml</DependentUpon>
     </Compile>
+    <Page Include="AdditionalElements\CreateDirectory.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainViews\Operations.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
