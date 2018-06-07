@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TotalCommander.AdditionalElements"
         mc:Ignorable="d"
-        Title="CreateDirectory" Height="200" Width="300">
+        Title="CreateDirectory" Height="251" Width="300"
+        WindowStartupLocation="CenterScreen">
+
     <Grid Margin="10">
         <Grid>
             <Grid.RowDefinitions>
@@ -16,10 +18,11 @@
             <StackPanel Margin="5">
                 <Label Name="NewItemMessageLabel" FontSize="12">Wpisz nazwę folderu:</Label>
                 <TextBox Name="ItemNameTB" Margin="0 5" Padding="3" FontSize="12"></TextBox>
+                <Image x:Name="image"  Height="91" Margin="-13,-1,146,0" Source="L:\C# Projects\Projekt Semestralny C#\TotalCommander\TotalCommander\Icons\Folder.png"/>
             </StackPanel>
             <StackPanel Margin="5" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
                 <Button Name="OkButton" Margin="5 0" Padding="10 3" Click="Create">Utwórz</Button>
-                <Button Name="CancelButton" Padding="10 3" IsCancel="True">Anuluj</Button>
+                <Button Name="CancelButton" Padding="10 3" IsCancel="True" Click="CancelButton_Click">Anuluj</Button>
             </StackPanel>
         </Grid>
     </Grid>

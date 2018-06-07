@@ -32,6 +32,7 @@ namespace TotalCommander.Classes
                 MyFile temp = (MyFile)ele;
                 Type = temp.extension;
                 Size = temp.size.ToString();
+                IntSize = temp.size;
             }
         }
 
@@ -40,9 +41,10 @@ namespace TotalCommander.Classes
         public string Type { get; set; }
         public DateTime CreationDate { get; set; }
         public string Size { get; set; }
+        public double IntSize { get; set; }
         public string Path { get; set; }
         public bool isFile { get; set; }
-
+        public string Extension { get; set; }
         public DiscElement Ele
         {
             get

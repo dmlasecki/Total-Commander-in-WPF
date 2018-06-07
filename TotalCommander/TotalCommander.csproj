@@ -58,6 +58,9 @@
     <Compile Include="AdditionalElements\CreateDirectory.xaml.cs">
       <DependentUpon>CreateDirectory.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AdditionalElements\DisplayPhoto.xaml.cs">
+      <DependentUpon>DisplayPhoto.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Classes\Contr.cs" />
     <Compile Include="Classes\DiscElement.cs" />
     <Compile Include="Classes\FocusCommunication.cs" />
@@ -71,6 +74,10 @@
       <DependentUpon>SideView.xaml</DependentUpon>
     </Compile>
     <Page Include="AdditionalElements\CreateDirectory.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AdditionalElements\DisplayPhoto.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -121,6 +128,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="NewFolder1\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\StartFileManager.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\Folder.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

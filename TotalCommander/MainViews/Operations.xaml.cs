@@ -248,15 +248,12 @@ namespace TotalCommander.MainViews
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            if (sideRight.SelectedElement != null)
-            {
-                selectedSite = SelectedSide.right;
-            }
            
-            else selectedSite = SelectedSide.left;
+            string side = communication.CorrectSide(sideLeft, sideRight);
+            sideLeft.isActive = false;
+            sideRight.isActive = false;
 
-
-            string sourcePath = selectedSite == SelectedSide.left ? sideLeft.mainPath.Text : sideRight.mainPath.Text;
+            string sourcePath = side == "left" ? sideLeft.mainPath.Text : sideRight.mainPath.Text;
             
             var dialog = new CreateDirectory(sourcePath);
             dialog.Show();
@@ -265,5 +262,11 @@ namespace TotalCommander.MainViews
            
             
         }
+
+        private void refresh_Click(object sender, RoutedEventArgs e)
+        {
+            RefreshAllList();
+        }
+
     }
 }

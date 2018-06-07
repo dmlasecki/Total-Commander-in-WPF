@@ -43,8 +43,26 @@ namespace TotalCommander.AdditionalElements
         private void Create(object sender, RoutedEventArgs e)
         {
             string nameFolder = System.IO.Path.Combine(path, ItemNameTB.Text);
-            Directory.CreateDirectory(nameFolder);
-            onCreatedDirectory();
+
+            if (nameFolder != "")
+            {
+                Directory.CreateDirectory(nameFolder);
+                onCreatedDirectory();
+                ItemNameTB.Text = "";
+            }
+
+            else
+            {
+                this.Close();
+                MessageBox.Show("Wpisz nazwę");
+            }
+                
+                
+        }
+
+        private void CancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

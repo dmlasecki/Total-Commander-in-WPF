@@ -17,6 +17,9 @@ using System.IO;
 using System.Collections;
 using System.Diagnostics;
 using System.ComponentModel;
+using TotalCommander.AdditionalElements;
+using System.Text.RegularExpressions;
+using Microsoft.Win32;
 
 namespace TotalCommander.MainViews
 {
@@ -104,13 +107,16 @@ namespace TotalCommander.MainViews
             myStack.Push(mainPath.Text);
            
         }
-
+        
+        //public List<DiscElement> elements;
         public void RefreshList()
         {
-            List<Contr> controller = new List<Contr>();
+           
             listView.ItemsSource = "";
-            
+           
+            List<Contr> controller = new List<Contr>();
             MyDirectory dirs = new MyDirectory(mainPath.Text);
+
             List<DiscElement> elements = dirs.GetSubElements();
 
             foreach (var item in elements)
@@ -119,13 +125,25 @@ namespace TotalCommander.MainViews
             }
             listView.ItemsSource = controller;
 
-         
+            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(listView.ItemsSource);
+            view.Filter = UserFilter;
+
+
 
         }
 
-       
+        private bool UserFilter(object item)
+        {
+            if (String.IsNullOrEmpty(txtFilter.Text))
+                return true;
+            else
+                return ((item as Contr).Name.IndexOf(txtFilter.Text, StringComparison.OrdinalIgnoreCase) >= 0);
+        }
 
-      
+
+
+
+
         private void Disc_SelectedIndexChanged(object sender, EventArgs e)
         {
             string[] nazwy;
@@ -138,12 +156,7 @@ namespace TotalCommander.MainViews
             myStack.Push(mainPath.Text);
             RefreshList();
             isActive = true;
-            /* if (count > 1)
-             {
-                steps++;
-                isActive = true;
-
-            }*/
+           
         }
 
 
@@ -154,12 +167,27 @@ namespace TotalCommander.MainViews
 
 
 
-
+                txtFilter.Text = "";
                isActive = true;
-              // steps++;
+              
                 Contr selectedItem = ((Contr)listView.SelectedItem);
                 if (selectedItem.isFile)
                 {
+                   
+                   
+                   
+                    if (selectedItem.Type == "JPG" || selectedItem.Type == "PNG")
+                    {
+                        DisplayPhoto photo = new DisplayPhoto(selectedItem.Name, selectedItem.CreationDate, selectedItem.Type, selectedItem.IntSize, selectedItem.Path);
+                        photo.Show();
+                    }
+
+                    else if(selectedItem.Type == "TXT")
+                    {
+                        OpenFileDialog fileDialog = new OpenFileDialog();
+                        fileDialog.ShowDialog();
+                    }
+                    else
                     Process.Start(selectedItem.Path);
 
                 }
@@ -194,10 +222,26 @@ namespace TotalCommander.MainViews
 
         private void listView_GotFocus(object sender, RoutedEventArgs e)
         {
-          // MessageBox.Show("Jestem");
-           // steps++;
+         
             isActive = true;
 
+        }
+
+        private void txtFilter_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+
+            CollectionViewSource.GetDefaultView(listView.ItemsSource).Refresh();
+
+
+
+        }
+
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+
+          
+            
         }
     }
 }
