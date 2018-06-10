@@ -61,6 +61,9 @@
     <Compile Include="AdditionalElements\DisplayPhoto.xaml.cs">
       <DependentUpon>DisplayPhoto.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AdditionalElements\RichText.xaml.cs">
+      <DependentUpon>RichText.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Classes\Contr.cs" />
     <Compile Include="Classes\DiscElement.cs" />
     <Compile Include="Classes\FocusCommunication.cs" />
@@ -78,6 +81,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AdditionalElements\DisplayPhoto.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AdditionalElements\RichText.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -129,9 +136,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="NewFolder1\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="Icons\StartFileManager.jpg" />
   </ItemGroup>

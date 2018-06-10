@@ -34,7 +34,7 @@ namespace TotalCommander.MainViews
             InitializeComponent();
             this.sideLeft = sideLeft;
             this.sideRight = sideRight;
-           // byName.Focusable = false;
+           
         }
 
         public void RefreshAllList()
@@ -67,22 +67,17 @@ namespace TotalCommander.MainViews
     }
 
         protected virtual void onShowAfterNameSorted()
-
-
         {
             
             string side = communication.CorrectSide(sideLeft, sideRight);
             sideLeft.isActive = false;
             sideRight.isActive = false;
 
-
             if (ShowAfterNameSorted != null)
             {
                 ShowAfterNameSorted.Invoke(side);
             }
-
-
-        }
+         }
 
         protected virtual void onShowAfterDeleted()
         {
@@ -92,8 +87,7 @@ namespace TotalCommander.MainViews
             }
         }
         
-
-        private void delete_Click(object sender, RoutedEventArgs e)
+            private void delete_Click(object sender, RoutedEventArgs e)
         {
             if (sideRight.SelectedElement != null)
             {
@@ -101,9 +95,7 @@ namespace TotalCommander.MainViews
             }
             else selectedSite = SelectedSide.left;
 
-
-            
-            if (selectedSite == SelectedSide.left)
+             if (selectedSite == SelectedSide.left)
             {
 
                 try
@@ -117,7 +109,6 @@ namespace TotalCommander.MainViews
                     {
                         Directory.Delete(sideLeft.SelectedElement.Path, true);
                         ShowAfterDeleted();
-
                     }
 
                 }
@@ -125,8 +116,6 @@ namespace TotalCommander.MainViews
                 {
                     MessageBox.Show(ex.Message);
                 }
-
-
             }
 
             else
@@ -143,14 +132,12 @@ namespace TotalCommander.MainViews
                         Directory.Delete(sideRight.SelectedElement.Path, true);
                         ShowAfterDeleted();
                     }
-
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
                 }
             }
-
         }
 
         private void DirectoryCopy(string sourceDirName, string destDirName, bool copySubDirs)
@@ -158,18 +145,16 @@ namespace TotalCommander.MainViews
             // Get the subdirectories for the specified directory.
             DirectoryInfo dir = new DirectoryInfo(sourceDirName);
 
-            if (!dir.Exists)
-            {
-                throw new DirectoryNotFoundException(
-                    "Source directory does not exist or could not be found: "
-                    + sourceDirName);
-            }
-
             DirectoryInfo[] dirs = dir.GetDirectories();
             // If the destination directory doesn't exist, create it.
             if (!Directory.Exists(destDirName))
             {
                 Directory.CreateDirectory(destDirName);
+            }
+
+            else
+            {
+                MessageBox.Show("Folder o podanej nazwie już istnieje");
             }
 
             // Get the files in the directory and copy them to the new location.
@@ -209,9 +194,7 @@ namespace TotalCommander.MainViews
 
             if (presentElement.isFile())
             {
-
-
-                if (!System.IO.Directory.Exists(targetPath))
+               if (!System.IO.Directory.Exists(targetPath))
                 {
                     System.IO.Directory.CreateDirectory(targetPath);
                 }
@@ -221,29 +204,18 @@ namespace TotalCommander.MainViews
 
             else
             {
-
                 DirectoryCopy(dirName, destFile, true);
                 onShowAfterDeleted();
-
             }
         }
 
         private void byName_Checked(object sender, RoutedEventArgs e)
         {
-            // MessageBox.Show("Po nazwie");
-           
-            onShowAfterNameSorted();
-            
-
-            
-            
+           onShowAfterNameSorted();
         }
         private void byName_Unchecked(object sender, RoutedEventArgs e)
         {
-            //MessageBox.Show("Po dacie");
             onShowAfterDateSorted();
-
-
         }
 
         private void button_Click(object sender, RoutedEventArgs e)
@@ -252,16 +224,12 @@ namespace TotalCommander.MainViews
             string side = communication.CorrectSide(sideLeft, sideRight);
             sideLeft.isActive = false;
             sideRight.isActive = false;
-
             string sourcePath = side == "left" ? sideLeft.mainPath.Text : sideRight.mainPath.Text;
-            
             var dialog = new CreateDirectory(sourcePath);
             dialog.Show();
             dialog.CreatedDirectory += RefreshAllList;
            
-           
-            
-        }
+         }
 
         private void refresh_Click(object sender, RoutedEventArgs e)
         {

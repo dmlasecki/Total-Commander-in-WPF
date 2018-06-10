@@ -44,21 +44,31 @@ namespace TotalCommander.AdditionalElements
         {
             string nameFolder = System.IO.Path.Combine(path, ItemNameTB.Text);
 
-            if (nameFolder != "")
+            if (!Directory.Exists(nameFolder))
             {
-                Directory.CreateDirectory(nameFolder);
-                onCreatedDirectory();
-                ItemNameTB.Text = "";
+
+
+                if (nameFolder != path)
+                {
+                    Directory.CreateDirectory(nameFolder);
+                    onCreatedDirectory();
+                    ItemNameTB.Text = "";
+                    this.Close();
+                }
+
+                else
+                {
+                    // this.Close();
+                    MessageBox.Show("Wpisz nazwę");
+                }
             }
 
             else
             {
-                this.Close();
-                MessageBox.Show("Wpisz nazwę");
+                MessageBox.Show("Folder o zadanej nazwie już istnieje");
+                ItemNameTB.Text = "";
             }
-                
-                
-        }
+              }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {

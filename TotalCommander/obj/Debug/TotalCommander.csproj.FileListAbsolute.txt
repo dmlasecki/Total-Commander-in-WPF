@@ -20,3 +20,5 @@ L:\C# Projects\Projekt Semestralny C#\TotalCommander\TotalCommander\obj\Debug\Ad
 L:\C# Projects\Projekt Semestralny C#\TotalCommander\TotalCommander\obj\Debug\AdditionalElements\CreateDirectory.baml
 L:\C# Projects\Projekt Semestralny C#\TotalCommander\TotalCommander\obj\Debug\AdditionalElements\DisplayPhoto.g.cs
 L:\C# Projects\Projekt Semestralny C#\TotalCommander\TotalCommander\obj\Debug\AdditionalElements\DisplayPhoto.baml
+L:\C# Projects\Projekt Semestralny C#\TotalCommander\TotalCommander\obj\Debug\AdditionalElements\RichText.g.cs
+L:\C# Projects\Projekt Semestralny C#\TotalCommander\TotalCommander\obj\Debug\AdditionalElements\RichText.baml

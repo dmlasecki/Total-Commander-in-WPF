@@ -29,56 +29,35 @@ namespace TotalCommander.MainViews
     public partial class SideView : UserControl
     {
         
-       
         public SideView()
         {
             InitializeComponent();
-           
 
         }
 
-        
-      
         public bool isActive { get; set; }
-        
-       
-    
-
         private void Side_Loaded(object sender, RoutedEventArgs e)
         {
-            
-           
             isActive = false;
-           
+
         }
 
-
-
         Stack myStack = new Stack();
-        public int count { get; set; }
-      
         public DiscElement SelectedElement
         {
 
-            
             get
             {
-               
                 Contr selectedItem = ((Contr)listView.SelectedItem);
                 if (selectedItem != null)
                 {
-
                     return selectedItem.Ele;
                 }
                 else return null;
 
-               
-            }
+                }
         }
      
-        
-       
-        
         public void sortByName()
         {
            
@@ -127,9 +106,6 @@ namespace TotalCommander.MainViews
 
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(listView.ItemsSource);
             view.Filter = UserFilter;
-
-
-
         }
 
         private bool UserFilter(object item)
@@ -140,17 +116,10 @@ namespace TotalCommander.MainViews
                 return ((item as Contr).Name.IndexOf(txtFilter.Text, StringComparison.OrdinalIgnoreCase) >= 0);
         }
 
-
-
-
-
         private void Disc_SelectedIndexChanged(object sender, EventArgs e)
         {
             string[] nazwy;
-            
-            count++;
             nazwy = Directory.GetLogicalDrives();
-            
             mainPath.Text = nazwy[Disc.SelectedIndex];
             myStack.Clear();
             myStack.Push(mainPath.Text);
@@ -164,48 +133,40 @@ namespace TotalCommander.MainViews
         {
             if (e.ChangedButton == MouseButton.Left)
             {
-
-
-
                 txtFilter.Text = "";
-               isActive = true;
-              
+                isActive = true;
+
                 Contr selectedItem = ((Contr)listView.SelectedItem);
-                if (selectedItem.isFile)
+                if (selectedItem != null)
                 {
-                   
-                   
-                   
-                    if (selectedItem.Type == "JPG" || selectedItem.Type == "PNG")
+                    if (selectedItem.isFile)
                     {
-                        DisplayPhoto photo = new DisplayPhoto(selectedItem.Name, selectedItem.CreationDate, selectedItem.Type, selectedItem.IntSize, selectedItem.Path);
-                        photo.Show();
+                        if (selectedItem.Type == "JPG" || selectedItem.Type == "PNG" || selectedItem.Type == "BMP")
+                        {
+                            DisplayPhoto photo = new DisplayPhoto(selectedItem.Name, selectedItem.CreationDate, selectedItem.Type, selectedItem.IntSize, selectedItem.Path);
+                            photo.Show();
+                        }
+
+                        else if (selectedItem.Type == "TXT")
+                        {
+                            RichText textWindow = new RichText(selectedItem.Path, selectedItem.Name);
+                            textWindow.Show();
+                        }
+                        else
+                            Process.Start(selectedItem.Path);
+
                     }
 
-                    else if(selectedItem.Type == "TXT")
-                    {
-                        OpenFileDialog fileDialog = new OpenFileDialog();
-                        fileDialog.ShowDialog();
-                    }
                     else
-                    Process.Start(selectedItem.Path);
+                    {
+                        mainPath.Text = selectedItem.Path;
+                        myStack.Push(mainPath.Text);
+                        RefreshList();
+                    }
 
                 }
-                
-
-                else
-                {
-                    mainPath.Text = selectedItem.Path;
-                    myStack.Push(mainPath.Text);
-                    RefreshList();
-                }
-
             }
         }
-
-      
-
-    
 
         private void back_Click(object sender, RoutedEventArgs e)
         {
@@ -218,30 +179,15 @@ namespace TotalCommander.MainViews
 
         }
 
-     
-
-        private void listView_GotFocus(object sender, RoutedEventArgs e)
+         private void listView_GotFocus(object sender, RoutedEventArgs e)
         {
-         
-            isActive = true;
-
+          isActive = true;
         }
 
         private void txtFilter_TextChanged(object sender, TextChangedEventArgs e)
         {
-
-
             CollectionViewSource.GetDefaultView(listView.ItemsSource).Refresh();
+       }
 
-
-
-        }
-
-        private void button_Click(object sender, RoutedEventArgs e)
-        {
-
-          
-            
-        }
-    }
+          }
 }

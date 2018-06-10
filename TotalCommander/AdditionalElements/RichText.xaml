@@ -1,0 +1,18 @@
+﻿<Window x:Class="TotalCommander.AdditionalElements.RichText"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TotalCommander.AdditionalElements"
+        mc:Ignorable="d"
+        Title="Text File Browser" Height="300" Width="600"
+        Name="TextRich"
+         WindowStartupLocation="CenterScreen">
+    <Grid>
+        <RichTextBox x:Name="richTextBox"  HorizontalAlignment="Left" Height="209" Margin="39,40,0,0" VerticalAlignment="Top" Width="508" ScrollViewer.CanContentScroll="True" HorizontalScrollBarVisibility="Hidden"  VerticalScrollBarVisibility="Visible">
+            <FlowDocument />
+        </RichTextBox>
+        <Label x:Name="nameFileTxt" Content="Label" HorizontalAlignment="Left" Margin="39,10,0,0" VerticalAlignment="Top" Width="384" FontWeight="Bold"/>
+
+    </Grid>
+</Window>

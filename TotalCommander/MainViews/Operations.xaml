@@ -27,10 +27,10 @@
             </ToggleButton.Style>
         </ToggleButton>
         <Button x:Name="button"  Content="NOWY FOLDER" HorizontalAlignment="Left" Margin="10,278,0,0" VerticalAlignment="Top" Width="115" Click="button_Click" Height="38" FontFamily="Segoe UI Black" Foreground="#FF3A3A3A" Background="White" FontSize="10"/>
-        <Border BorderBrush="Black" BorderThickness="0" HorizontalAlignment="Left" Height="38" Margin="10,28,0,0" VerticalAlignment="Top" Width="115" Background="#FFEAEAEA">
+        <Border BorderBrush="Black" BorderThickness="0" HorizontalAlignment="Left" Height="36" Margin="10,28,0,0" VerticalAlignment="Top" Width="115" Background="#FFEAEAEA">
             <Label x:Name="label" Content="Sortuj według:" Margin="12.2,4.2,9.4,-4.4"/>
         </Border>
-        <Button x:Name="refresh"  Content="ODŚWIERZ" HorizontalAlignment="Left" Margin="10,351,0,0" VerticalAlignment="Top" Width="115" Click="refresh_Click" Height="38" FontFamily="Segoe UI Black" Foreground="#FF3A3A3A" Background="White" FontSize="10"/>
+        <Button x:Name="refresh"  Content="ODŚWIEŻ" HorizontalAlignment="Left" Margin="10,351,0,0" VerticalAlignment="Top" Width="115" Click="refresh_Click" Height="38" FontFamily="Segoe UI Black" Foreground="#FF3A3A3A" Background="White" FontSize="10"/>
 
 
     </Grid>

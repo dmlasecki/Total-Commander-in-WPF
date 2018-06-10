@@ -51,7 +51,6 @@ namespace TotalCommander
          }
        
 
-       
         public void RefreshAllList()
         {
             this.sideLeft.RefreshList();
@@ -59,9 +58,7 @@ namespace TotalCommander
             
         }
 
-       
-
-        public void RefreshAfterNameSort(string a)
+         public void RefreshAfterNameSort(string a)
         {
           
 

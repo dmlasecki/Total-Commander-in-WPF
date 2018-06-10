@@ -12,8 +12,6 @@ namespace TotalCommander.Classes
         SelectedSide selectedSite;
         public string CorrectSide(SideView sideLeft, SideView sideRight)
         {
-           
-
             if(sideLeft.isActive != false || sideRight.isActive != false)
             {
                 if (sideLeft.isActive == true)
@@ -26,10 +24,7 @@ namespace TotalCommander.Classes
 
                     sideLeft.isActive = false;
                     lastActive = sideRight;
-
                 }
-
-
             }
 
             else
@@ -38,12 +33,7 @@ namespace TotalCommander.Classes
                 else sideRight.isActive = true;
             }
 
-
-
-          
-
-
-            selectedSite = sideLeft.isActive == true ? SelectedSide.left : SelectedSide.right;
+             selectedSite = sideLeft.isActive == true ? SelectedSide.left : SelectedSide.right;
 
             string side = selectedSite.ToString();
             return side;
